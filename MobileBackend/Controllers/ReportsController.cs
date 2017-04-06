@@ -3,6 +3,7 @@ using MobileBackend.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Web;
 using System.Web.Mvc;
 
@@ -57,6 +58,21 @@ namespace MobileBackend.Controllers
             {
                 entities.Dispose();
             }
+        }
+
+        public ActionResult HoursPerWorkAssignmentAsExcel()
+        {
+            // TODO: hae tiedot tietokannasta!
+            StringBuilder csv = new StringBuilder();
+
+            // luodaan CSV-muotoinen tiedosto
+            csv.AppendLine("Matti;123,5");
+            csv.AppendLine("Jesse;86,25");
+            csv.AppendLine("Kaisa;99,00");
+
+            // palautetaan CSV-tiedot selaimelle
+            byte[] buffer = Encoding.UTF8.GetBytes(csv.ToString());
+            return File(buffer, "text/csv", "Työtunnit.csv");
         }
     }
 }

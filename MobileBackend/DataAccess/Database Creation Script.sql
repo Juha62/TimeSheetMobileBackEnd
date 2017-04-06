@@ -1,6 +1,6 @@
 ﻿USE [master]
 GO
-/****** Object:  Database [PointMobileDB]    Script Date: 3/14/2017 11:05:27 ******/
+/****** Object:  Database [PointMobileDB]    Script Date: 4/6/2017 10:53:19 ******/
 CREATE DATABASE [PointMobileDB]
 GO
 IF (1 = FULLTEXTSERVICEPROPERTY('IsFullTextInstalled'))
@@ -62,7 +62,7 @@ ALTER DATABASE [PointMobileDB] SET DB_CHAINING OFF
 GO
 USE [PointMobileDB]
 GO
-/****** Object:  Table [dbo].[Contractors]    Script Date: 3/14/2017 11:05:27 ******/
+/****** Object:  Table [dbo].[Contractors]    Script Date: 4/6/2017 10:53:19 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -86,7 +86,7 @@ CREATE TABLE [dbo].[Contractors](
 )
 
 GO
-/****** Object:  Table [dbo].[Customers]    Script Date: 3/14/2017 11:05:27 ******/
+/****** Object:  Table [dbo].[Customers]    Script Date: 4/6/2017 10:53:19 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -108,10 +108,12 @@ CREATE TABLE [dbo].[Customers](
 )
 
 GO
-/****** Object:  Table [dbo].[Employees]    Script Date: 3/14/2017 11:05:27 ******/
+/****** Object:  Table [dbo].[Employees]    Script Date: 4/6/2017 10:53:19 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
 GO
 CREATE TABLE [dbo].[Employees](
 	[Id_Employee] [int] IDENTITY(1,1) NOT NULL,
@@ -125,6 +127,7 @@ CREATE TABLE [dbo].[Employees](
 	[LastModifiedAt] [datetime] NULL,
 	[DeletedAt] [datetime] NULL,
 	[Active] [bit] NULL,
+	[EmployeePicture] [varbinary](max) NULL,
  CONSTRAINT [PK_Employees] PRIMARY KEY CLUSTERED 
 (
 	[Id_Employee] ASC
@@ -132,7 +135,9 @@ CREATE TABLE [dbo].[Employees](
 )
 
 GO
-/****** Object:  Table [dbo].[Timesheets]    Script Date: 3/14/2017 11:05:27 ******/
+SET ANSI_PADDING OFF
+GO
+/****** Object:  Table [dbo].[Timesheets]    Script Date: 4/6/2017 10:53:19 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -158,7 +163,7 @@ CREATE TABLE [dbo].[Timesheets](
 )
 
 GO
-/****** Object:  Table [dbo].[WorkAssignments]    Script Date: 3/14/2017 11:05:27 ******/
+/****** Object:  Table [dbo].[WorkAssignments]    Script Date: 4/6/2017 10:53:19 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -183,42 +188,6 @@ CREATE TABLE [dbo].[WorkAssignments](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON)
 )
 
-GO
-SET IDENTITY_INSERT [dbo].[Contractors] ON 
-
-GO
-INSERT [dbo].[Contractors] ([Id_Contractor], [CompanyName], [ContactPerson], [PhoneNumber], [EmailAddress], [VatId], [HourlyRate], [CreatedAt], [LastModifiedAt], [DeletedAt], [Active]) VALUES (1, N'Empower Oy', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL)
-GO
-INSERT [dbo].[Contractors] ([Id_Contractor], [CompanyName], [ContactPerson], [PhoneNumber], [EmailAddress], [VatId], [HourlyRate], [CreatedAt], [LastModifiedAt], [DeletedAt], [Active]) VALUES (2, N'Tähtihuolto Oy', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL)
-GO
-SET IDENTITY_INSERT [dbo].[Contractors] OFF
-GO
-SET IDENTITY_INSERT [dbo].[Customers] ON 
-
-GO
-INSERT [dbo].[Customers] ([Id_Customer], [CustomerName], [ContactPerson], [PhoneNumber], [EmailAddress], [CreatedAt], [LastModifiedAt], [DeletedAt], [Active]) VALUES (1, N'Taloyhtiö Porvoon Sydän', N'M. Möttönen', N'019 - 4747474', NULL, NULL, NULL, NULL, NULL)
-GO
-SET IDENTITY_INSERT [dbo].[Customers] OFF
-GO
-SET IDENTITY_INSERT [dbo].[Employees] ON 
-
-GO
-INSERT [dbo].[Employees] ([Id_Employee], [Id_Contractor], [FirstName], [LastName], [PhoneNumber], [EmailAddress], [EmployeeReferences], [CreatedAt], [LastModifiedAt], [DeletedAt], [Active]) VALUES (1, 1, N'Teija', N'Tekijä', NULL, NULL, NULL, NULL, NULL, NULL, 1)
-GO
-INSERT [dbo].[Employees] ([Id_Employee], [Id_Contractor], [FirstName], [LastName], [PhoneNumber], [EmailAddress], [EmployeeReferences], [CreatedAt], [LastModifiedAt], [DeletedAt], [Active]) VALUES (2, 1, N'Teppo', N'Testaaja', NULL, NULL, NULL, NULL, NULL, NULL, 1)
-GO
-INSERT [dbo].[Employees] ([Id_Employee], [Id_Contractor], [FirstName], [LastName], [PhoneNumber], [EmailAddress], [EmployeeReferences], [CreatedAt], [LastModifiedAt], [DeletedAt], [Active]) VALUES (3, 2, N'Sakke', N'Säätäjä', NULL, NULL, NULL, NULL, NULL, NULL, 1)
-GO
-SET IDENTITY_INSERT [dbo].[Employees] OFF
-GO
-SET IDENTITY_INSERT [dbo].[WorkAssignments] ON 
-
-GO
-INSERT [dbo].[WorkAssignments] ([Id_WorkAssignment], [Id_Customer], [Title], [Description], [Deadline], [InProgress], [InProgressAt], [Completed], [CompletedAt], [CreatedAt], [LastModifiedAt], [DeletedAt], [Active]) VALUES (1, 1, N'Lampun vaihto', NULL, CAST(N'2017-03-17 00:00:00.000' AS DateTime), 0, NULL, 0, NULL, CAST(N'2017-03-14 00:00:00.000' AS DateTime), NULL, NULL, 1)
-GO
-INSERT [dbo].[WorkAssignments] ([Id_WorkAssignment], [Id_Customer], [Title], [Description], [Deadline], [InProgress], [InProgressAt], [Completed], [CompletedAt], [CreatedAt], [LastModifiedAt], [DeletedAt], [Active]) VALUES (2, 1, N'Hiekan poisto pihalta', NULL, CAST(N'2017-03-17 00:00:00.000' AS DateTime), 0, NULL, 0, NULL, CAST(N'2017-03-14 00:00:00.000' AS DateTime), NULL, NULL, 1)
-GO
-SET IDENTITY_INSERT [dbo].[WorkAssignments] OFF
 GO
 ALTER TABLE [dbo].[Employees]  WITH CHECK ADD  CONSTRAINT [FK_Employees_Contractors] FOREIGN KEY([Id_Contractor])
 REFERENCES [dbo].[Contractors] ([Id_Contractor])

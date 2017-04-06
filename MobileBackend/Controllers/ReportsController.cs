@@ -74,5 +74,40 @@ namespace MobileBackend.Controllers
             byte[] buffer = Encoding.UTF8.GetBytes(csv.ToString());
             return File(buffer, "text/csv", "Työtunnit.csv");
         }
+
+        public ActionResult HoursPerWorkAssignmentAsExcel2()
+        {
+            // TODO: hae tiedot tietokannasta!
+            StringBuilder csv = new StringBuilder();
+
+            // luodaan CSV-muotoinen tiedosto
+            TimesheetEntities entities = new TimesheetEntities();
+            try
+            {
+                DateTime today = DateTime.Today;
+                DateTime tomorrow = today.AddDays(1);
+
+                // haetaan kaikki kuluvan päivän tuntikirjaukset
+                List<Timesheet> allTimesheetsToday = (from ts in entities.Timesheets
+                                                      where (ts.StartTime > today) &&
+                                                      (ts.StartTime < tomorrow) &&
+                                                      (ts.WorkComplete == true)
+                                                      select ts).ToList();
+
+                foreach (Timesheet timesheet in allTimesheetsToday)
+                {
+                    csv.AppendLine(timesheet.Id_Employee + ";" +
+                        timesheet.StartTime + ";" + timesheet.StopTime+";");
+                }
+            }
+            finally
+            {
+                entities.Dispose();
+            }
+
+            // palautetaan CSV-tiedot selaimelle
+            byte[] buffer = Encoding.UTF8.GetBytes(csv.ToString());
+            return File(buffer, "text/csv", "Työtunnit.csv");
+        }
     }
 }

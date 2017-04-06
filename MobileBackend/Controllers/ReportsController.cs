@@ -77,7 +77,6 @@ namespace MobileBackend.Controllers
 
         public ActionResult HoursPerWorkAssignmentAsExcel2()
         {
-            // TODO: hae tiedot tietokannasta!
             StringBuilder csv = new StringBuilder();
 
             // luodaan CSV-muotoinen tiedosto

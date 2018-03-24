@@ -144,5 +144,8 @@ namespace MobileBackend.Controllers
 
             return Json(model, JsonRequestBehavior.AllowGet);
         }
-    }
-}
+
+           
+        }
+        }
+    

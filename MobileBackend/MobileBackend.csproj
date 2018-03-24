@@ -26,6 +26,7 @@
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
     <ApplicationInsightsResourceId>/subscriptions/5b47016a-f0ce-48fe-b82a-a0b196ecedc9/resourcegroups/Default-ApplicationInsights-EastUS/providers/microsoft.insights/components/MobileBackend</ApplicationInsightsResourceId>
+    <Use64BitIISExpress />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -213,6 +214,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\ReportsController.cs" />
+    <Compile Include="Controllers\SearchController.cs" />
     <Compile Include="Controllers\WorkAssignmentController.cs" />
     <Compile Include="DataAccess\Contractor.cs">
       <DependentUpon>TimesheetModel.tt</DependentUpon>
@@ -336,6 +338,11 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Service References\Application Insights\ConnectedService.json" />
     <Content Include="Views\Reports\HoursPerWorkAssignment.cshtml" />
+    <Content Include="Views\Search\Create.cshtml" />
+    <Content Include="Views\Search\Delete.cshtml" />
+    <Content Include="Views\Search\Details.cshtml" />
+    <Content Include="Views\Search\Edit.cshtml" />
+    <Content Include="Views\Search\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -368,7 +375,7 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>True</UseIIS>
+          <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>27971</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>

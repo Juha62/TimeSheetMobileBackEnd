@@ -339,9 +339,6 @@
     <Content Include="Service References\Application Insights\ConnectedService.json" />
     <Content Include="Views\Reports\HoursPerWorkAssignment.cshtml" />
     <Content Include="Views\Search\Create.cshtml" />
-    <Content Include="Views\Search\Delete.cshtml" />
-    <Content Include="Views\Search\Details.cshtml" />
-    <Content Include="Views\Search\Edit.cshtml" />
     <Content Include="Views\Search\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>

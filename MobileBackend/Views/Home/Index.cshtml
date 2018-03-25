@@ -5,7 +5,15 @@
 <div class="jumbotron">
     <h1>Timesheet Mobile Backend</h1>
     <p><a href="~/Reports/HoursPerWorkAssignment" class="btn btn-primary btn-lg">View reports&raquo;</a></p>
-    <p><a href="~/Search/Index" class="btn btn-primary btn-lg">Henkilönumero&raquo;</a></p>
-    <p><a href="~/Search/Index" class="btn btn-primary btn-lg">TyoNumero&raquo;</a></p>
-    <p><a href="~/Search/Index" class="btn btn-primary btn-lg">KustannusPaikka&raquo;</a></p>
+    <p><a href="~/Search/Index" class="btn btn-primary btn-lg">Haku/näytä kaikki&raquo;</a></p>
+
+    <!-- Load icon library -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <!-- The form -->
+    <form class="example" action="action_page.php">
+        <input type="text" placeholder="Search.." name="search">
+        <button type="submit"><i class="fa fa-search"></i></button>
+    </form>
+
 </div>

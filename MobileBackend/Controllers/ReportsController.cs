@@ -110,7 +110,7 @@ namespace MobileBackend.Controllers
         }
 
 
-        // This should be employee id search
+        // This should be employee's id search
         public ActionResult HoursPerWorkAssignmentAsExcel3()
         {
             StringBuilder csv = new StringBuilder();
@@ -126,7 +126,7 @@ namespace MobileBackend.Controllers
                 List<Timesheet> allTimesheetsToday = (from ts in entities.Timesheets
                                                       where (ts.StartTime > today) &&
                                                       (ts.StartTime < tomorrow) &&
-                                                      (ts.Id_Employee == null)
+                                                      (ts.Id_Employee ==null)
                                                       select  ts).ToList();
 
                 foreach (Timesheet timesheet in allTimesheetsToday)
@@ -142,7 +142,7 @@ namespace MobileBackend.Controllers
 
             // palautetaan CSV-tiedot selaimelle
             byte[] buffer = Encoding.UTF8.GetBytes(csv.ToString());
-            return File(buffer, "text/csv", "Emplyee Id.csv");
+            return File(buffer, "text/csv", "Emplyoee Id.csv");
         }
 
         // End of employee seacrh 

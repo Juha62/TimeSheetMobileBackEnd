@@ -5,7 +5,7 @@
 <div class="jumbotron">
     <h1>Timesheet Mobile Backend</h1>
     <p><a href="~/Reports/HoursPerWorkAssignment" class="btn btn-primary btn-lg" style="width:160px;" >View reports&raquo;</a></p>    
-    <p><a href="~/Search/Index" class="btn btn-primary btn-lg" style="width:160px;" >Show all&raquo;</a></p>
+    <p><a href="~/Search/Index" class="btn btn-primary btn-lg" style="width:160px;" >Show or Create&raquo;</a></p>
    
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <style>
@@ -50,17 +50,17 @@
 
             .show {
                 display: block;
-           
+            }
         </style>
  
         <div class="dropdown">
             <button onclick="myFunction()" class="btn btn-primary btn-lg dropbtn">Dropdown Search</button>
             <div id="myDropdown" class="dropdown-content">
-                <a href="#Date">Date</a>
-                <a href="#Person Id">Person Id</a>
-                <a href="#Work Id">Work Id</a>
-                <a href="#Kustannuspaikka">Kustannuspaikka</a>
-                <a href="Department">Department</a>
+                <a href="~/Reports/HoursPerWorkAssignmentAsExcel2">Date</a>
+                <a href="">Person Id</a>
+                <a href="">Work Id</a>
+                <a href="">Kustannuspaikka</a>
+                <a href="">Department</a>
             </div>
         </div>
 </div>
@@ -85,5 +85,6 @@
             }
         }
     }
+
 </script>
 
